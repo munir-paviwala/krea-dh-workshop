@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Project Index | Krea University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap');
+
+        @keyframes gradientBG {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            background:
+                radial-gradient(circle at 10% 90%, rgba(20, 184, 166, 0.42), transparent 48%),
+                radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.52), transparent 48%),
+                radial-gradient(circle at 55% 55%, rgba(253, 186, 116, 0.35), transparent 50%),
+                linear-gradient(145deg, #fef9c3, #ccfbf1, #fde68a, #a7f3d0, #fed7aa);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 400% 400%;
+            animation: gradientBG 70s ease infinite;
+            color: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+        }
+
+        .mono-text {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.10;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Smooth link underline animation */
+        .academic-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .academic-link::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 1px;
+            bottom: 0; left: 0;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .academic-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        dialog::backdrop {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Section type visual hierarchy via left border */
+        .sec-global   { border-left: 4px solid #6366f1; }   /* indigo  */
+        .sec-southasia { border-left: 4px solid #d97706; }  /* amber   */
+        .sec-tutorial  { border-left: 4px solid #0d9488; }  /* teal    */
+        .sec-tools     { border-left: 4px solid #0891b2; }  /* cyan    */
+        .sec-readings  { border-left: 4px solid #7c3aed; }  /* violet  */
+
+        .sec-header-global    { color: #4338ca; }
+        .sec-header-southasia { color: #92400e; }
+        .sec-header-tutorial  { color: #0f766e; }
+        .sec-header-tools     { color: #0e7490; }
+        .sec-header-readings  { color: #6d28d9; }
+
+        /* Individual entry card */
+        .entry-card {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 1rem 1.25rem;
+            transition: background 0.15s ease;
+        }
+        .entry-card:last-child { border-bottom: none; }
+        .entry-card:hover { background: rgba(255,255,255,0.55); }
+
+        /* Method/region pill */
+        .pill {
+            display: inline-block;
+            font-size: 10px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            padding: 1px 7px;
+            border-radius: 9999px;
+            border: 1px solid;
+            line-height: 1.6;
+        }
+
+        .drag-over-section { border-color: #9333ea !important; background-color: rgba(243,232,255,0.5) !important; }
+        .drag-over-link    { outline: 2px solid #9333ea; }
+
+        @media print {
+            body { background: white !important; }
+            .noise-overlay, .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="relative pb-20">
+<div class="noise-overlay"></div>
+
+<main class="max-w-4xl mx-auto py-12 px-4 md:px-6 relative z-10">
+
+    <!-- ── Header ── -->
+    <header class="mb-10 text-center">
+        <div class="text-xs mono-text font-bold uppercase tracking-widest text-stone-700 mb-5 border-b border-stone-900/10 pb-4 max-w-xl mx-auto flex flex-wrap justify-center gap-2">
+            <span>DH Workshop</span>
+            <span class="opacity-30">|</span>
+            <span>Krea University</span>
+            <span class="opacity-30">|</span>
+            <span>4–6 Sep 2026</span>
+            <span class="opacity-30">|</span>
+            <span>Munir Paviwala</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold text-stone-900 mb-3 tracking-tight">Digital Humanities Project Index</h1>
+        <p class="text-stone-700 italic text-base mb-3">Projects, tools, tutorials, and resources from the workshop.</p>
+        <p class="text-xs mono-text text-stone-600">
+            Bookmark: <code class="bg-white/60 px-1.5 py-0.5 rounded border border-stone-300">Cmd/Ctrl + D</code>
+        </p>
+    </header>
+
+    <!-- ── Filter Bar ── -->
+    <section class="no-print bg-white/80 rounded-xl p-4 border border-stone-900/10 shadow-[2px_2px_0px_rgba(0,0,0,0.04)] mb-8 space-y-3">
+        <div class="relative">
+            <input type="text" id="search-input"
+                placeholder="Search projects, tools, methods…"
+                class="w-full px-4 py-2.5 pl-9 rounded-lg border border-stone-300 bg-white text-sm mono-text focus:outline-none focus:border-amber-500 transition-colors">
+            <svg class="w-3.5 h-3.5 text-stone-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+        </div>
+
+        <div class="space-y-2 text-xs mono-text">
+            <!-- Collection filter -->
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-stone-700 shrink-0 w-20">Collection</span>
+                <div id="section-filters" class="flex flex-wrap gap-1.5">
+                    <button class="sec-filter-btn active bg-stone-800 text-white px-3 py-1 rounded-full transition-all" data-sec="all">All&nbsp;<span id="total-count" class="opacity-70 font-normal">0</span></button>
+                    <button class="sec-filter-btn bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200 hover:border-amber-400 hover:text-amber-800 transition-all" data-sec="DH Projects: Americas &amp; Global">Americas &amp; Global</button>
+                    <button class="sec-filter-btn bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200 hover:border-amber-400 hover:text-amber-800 transition-all" data-sec="South Asia Exemplars &amp; Case Studies">South Asia</button>
+                    <button class="sec-filter-btn bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200 hover:border-amber-400 hover:text-amber-800 transition-all" data-sec="Tutorials &amp; Practical Guides">Tutorials</button>
+                    <button class="sec-filter-btn bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200 hover:border-amber-400 hover:text-amber-800 transition-all" data-sec="DH Tools &amp; Software Platforms">Tools</button>
+                    <button class="sec-filter-btn bg-white text-stone-700 px-3 py-1 rounded-full border border-stone-200 hover:border-amber-400 hover:text-amber-800 transition-all" data-sec="Readings &amp; Reference Collections">Readings</button>
+                </div>
+            </div>
+
+            <!-- Method filter -->
+            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-stone-100">
+                <span class="font-bold text-stone-700 shrink-0 w-20">Method</span>
+                <div id="method-filters" class="flex flex-wrap gap-1.5">
+                    <button class="method-filter-btn active bg-stone-800 text-white px-3 py-0.5 rounded-full transition-all" data-method="all">All</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="GIS">GIS / Spatial</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Data Viz">Data Viz</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Digital Exhibits">Digital Exhibits</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Textual Analysis">Text Analysis</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Network Analysis">Network Analysis</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Videos/Infographics">Videos / Media</button>
+                    <button class="method-filter-btn bg-white text-stone-600 px-3 py-0.5 rounded-full border border-stone-200 hover:border-teal-400 hover:text-teal-800 transition-all" data-method="Tool">Tool / Platform</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Project Index ── -->
+    <div id="project-container" class="space-y-8"></div>
+
+    <!-- ── Suggest Section ── -->
+    <section class="mt-14 bg-white/75 rounded-xl p-6 border border-stone-900/10 shadow-[2px_2px_0px_rgba(0,0,0,0.04)] text-center">
+        <h3 class="text-xl font-bold text-stone-900 mb-2">Suggest a Project</h3>
+        <p class="text-stone-600 text-sm mono-text max-w-lg mx-auto mb-4 leading-relaxed">Know a DH project, archive, or resource that should be here?</p>
+        <a href="mailto:munir.paviwala@krea.edu.in?subject=DH%20Project%20Index%20Suggestion"
+           class="inline-block px-5 py-2 bg-stone-800 hover:bg-stone-900 text-white text-xs mono-text font-bold uppercase tracking-wider rounded-lg transition-colors">
+           Suggest a Project &rarr;
+        </a>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="mt-10 pt-6 border-t border-stone-900/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs mono-text text-stone-500">
+        <p>Digital Humanities Workshop &copy; 2026 Krea University</p>
+        <button id="open-editor-btn" class="text-stone-400 hover:text-stone-700 transition-colors" title="Open editor">✎</button>
+    </footer>
+</main>
+
+<!-- ── Secret Editor Modal ── -->
+<dialog id="editor-modal" class="rounded-xl shadow-2xl p-0 w-full max-w-3xl border border-stone-300/60 bg-[#FDFBF7] overflow-hidden max-h-[90vh]">
+    <div class="flex flex-col h-full max-h-[90vh]">
+        <div class="p-5 border-b border-stone-200 flex justify-between items-center bg-white/70">
+            <div>
+                <h3 class="text-xl font-bold text-stone-900 font-serif">Project Index Editor</h3>
+                <p class="text-xs mono-text text-stone-500 mt-0.5">Drag to reorder. Changes preview live.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="btn-download" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs mono-text font-bold rounded transition-colors flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Save & Download
+                </button>
+                <button id="btn-close" class="text-stone-400 hover:text-stone-700 p-1.5 rounded hover:bg-stone-100 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-5 overflow-y-auto flex-grow space-y-5">
+            <div id="gui-editor" class="space-y-5"></div>
+            <button onclick="addSection()" class="w-full py-3 border-2 border-dashed border-amber-300 hover:border-amber-500 rounded-lg text-amber-700 font-bold text-sm bg-amber-50/50 hover:bg-amber-50 transition-colors">
+                + Add New Section
+            </button>
+        </div>
+    </div>
+</dialog>
+
+<!-- ── Embedded Data ── -->
+<script id="app-data" type="application/json">
+[
+  {
+    "section": "DH Projects: Americas & Global",
+    "description": "",
+    "links": [
+      {
+        "title": "British East India Company Trade Data & Voyages Map",
+        "url": "https://resources.amdigital.co.uk/eic/map/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "GIS"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Slave Voyages: The Trans-Atlantic Slave Trade Database",
+        "url": "https://www.slavevoyages.org/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "GIS"
+        ],
+        "region": "Global / Americas"
+      },
+      {
+        "title": "Atomic Narratives",
+        "url": "https://www.fluidencodings.com/projects/atomic-narratives/",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "The Journey of an Object: Google Arts & Culture Story",
+        "url": "https://artsandculture.google.com/story/uAUBtVjZk3XaKA",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Photogrammar",
+        "url": "https://photogrammar.org/intro",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Digital Exhibits",
+          "Data Viz"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "Les Mis\u00e9rables Character Co-occurrence & Network Analysis",
+        "url": "https://lesmiserables.mla.hcommons.org/",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "Textual Analysis"
+        ],
+        "region": "Europe / Global"
+      },
+      {
+        "title": "Our World in Data: Climate Change Exploration",
+        "url": "https://ourworldindata.org/climate-change",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "The Walt Whitman Archive",
+        "url": "https://whitmanarchive.org/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Textual Analysis"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "103 Orchard: Tenement Museum Stories",
+        "url": "https://103orchard.tenement.org/stories/103-orchard/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Web Storytelling"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "Earth Temperature Timeline (xkcd 1732)",
+        "url": "https://xkcd.com/1732/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Videos/Infographics"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Network Analysis with Gephi: Anglo-Saxon Charters",
+        "url": "https://theport.us/tutorial/network-analysis-with-gephi-and-anglo-saxons",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "Tutorial"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "FWWCP Digital Collection: Working-Class Literature",
+        "url": "https://fwwcpdigitalcollection.org/",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Digital Exhibits"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "Geography of the Post: US Post Offices in the 19th Century",
+        "url": "https://cblevins.github.io/us-post-offices/",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "AIDS Treatment Activism: GLBT Historical Society",
+        "url": "https://www.glbthistory.org/aids-treatment-activism",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Web Storytelling"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "Hans Rosling: 200 Countries, 200 Years, 4 Minutes",
+        "url": "https://www.youtube.com/watch?v=UWcWeaHQ1MM",
+        "desc": "",
+        "methods": [
+          "Videos/Infographics",
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Creating Network Diagrams from Historical Sources",
+        "url": "https://programminghistorian.org/en/lessons/creating-network-diagrams-from-historical-sources",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Our World in Data: The World's Energy Problem",
+        "url": "https://ourworldindata.org/worlds-energy-problem",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Mapping the Air War in Ukraine",
+        "url": "https://www.nytimes.com/2026/08/05/world/europe/russia-ukraine-air-war.html?rsrc=flt&smid=url-share",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Data Viz"
+        ],
+        "region": "Europe / Global"
+      },
+      {
+        "title": "Preserving Cultural Heritage: Google Arts & Culture",
+        "url": "https://artsandculture.google.com/story/AwVhLForhxE_YQ",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Arts in Exile (K\u00fcnste im Exil): Interactive Timeline",
+        "url": "https://kuenste-im-exil.de/KIE/Web/EN/Service/Timeline/timeline.html",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Digital Exhibits"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "Our World in Data: Fossil Fuels",
+        "url": "https://ourworldindata.org/fossil-fuels",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "ArcGIS Spatial Storytelling Dashboard",
+        "url": "https://experience.arcgis.com/experience/f65e27165c224f46ab390dc0154d3eb9/",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Japanese American Incarceration Digital Exhibit (CSUJAD)",
+        "url": "https://scalar.usc.edu/works/csujad-exhibit/introduction?path=index",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Scalar"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "Environmental History: ArcGIS StoryMap",
+        "url": "https://storymaps.arcgis.com/stories/1cb2707246a54683bfa6e6bf1917c881",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Web Storytelling"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "120 Years of Olympic History: Dominance Charts",
+        "url": "https://www.nytimes.com/interactive/2016/08/08/sports/olympics/history-olympic-dominance-charts.html",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "The Donkey Drivers' Map: Beirut & Mount Lebanon",
+        "url": "https://sites.google.com/bc.edu/thedonkeydriversmap/home",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Web Storytelling"
+        ],
+        "region": "Middle East / Global"
+      },
+      {
+        "title": "Museum of America: Visual Essay",
+        "url": "https://www.nytimes.com/interactive/2026/08/04/opinion/museum-of-america.html?smid=url-share",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Digital Exhibits"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "FWWCP Publishing Groups Interactive Map",
+        "url": "https://fwwcpdigitalcollection.org/map.html",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "Historical Photographs of China: Ayre Collection",
+        "url": "https://hpcbristol.net/collections/ayre",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "East Asia"
+      },
+      {
+        "title": "Fra Mauro World Map (1450): Engineering Historical Memory",
+        "url": "https://engineeringhistoricalmemory.com/FraMauro.php?hid=208&cid=",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Digital Exhibits"
+        ],
+        "region": "Europe / Global"
+      },
+      {
+        "title": "Unsilencing Slavery: Biographies of the Enslaved",
+        "url": "https://unsilencing-slavery.org/persons/William-Scott-P109",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Americas"
+      },
+      {
+        "title": "FWWCP Community Publishing Timeline",
+        "url": "https://fwwcpdigitalcollection.org/timeline.html",
+        "desc": "",
+        "methods": [
+          "Other web projects"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "Budapest 18th District Local History Portal",
+        "url": "https://www.bp18ker.hu/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "The First Ladies Digital Gallery: Smithsonian NMAH",
+        "url": "https://firstladies.si.edu/gallery",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Americas"
+      }
+    ]
+  },
+  {
+    "section": "South Asia Exemplars & Case Studies",
+    "description": "",
+    "links": [
+      {
+        "title": "Bollywood and Beyond: Visualizing Hindi Cinema",
+        "url": "https://web.sas.upenn.edu/bollywood-and-beyond/",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Chapakhana: Mapping the Spread of Print in South Asia",
+        "url": "https://chapakhana.uchicago.edu/about",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Data Viz",
+          "Digital Exhibits"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Bichitra: Online Rabindranath Tagore Variorum",
+        "url": "https://bichitra.jdvu.ac.in/index.php",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Textual Analysis"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Mapping Kipling's India: Colonial Geographies",
+        "url": "https://scalar.lehigh.edu/kiplings/map-of-relevant-place-names-in-19th-century-colonial-india",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Digital Exhibits"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Going Global in Mughal India",
+        "url": "https://sites.duke.edu/globalinmughalindia/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Videos/Infographics"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "1947 Partition Archive",
+        "url": "https://1947partitionarchive.org.in/collections/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Oral History"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Tasveer Ghar: A House of Indian Popular Visual Culture",
+        "url": "https://www.tasveergharindia.net/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Videos/Infographics"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Markets of Pain: Trauma, Memory, and Visual Culture",
+        "url": "https://www.marketsofpain.com/",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Digital Exhibits"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "B is for Bapu: Gandhi in the Visual Arts",
+        "url": "https://sites.duke.edu/bisforbapu/",
+        "desc": "",
+        "methods": [
+          "Videos/Infographics",
+          "Digital Exhibits"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "The Many Lives of a Woman's Body (EPW Engage)",
+        "url": "https://www.epw.in/engage/article/many-lives-womans-body",
+        "desc": "",
+        "methods": [
+          "Videos/Infographics",
+          "Digital Exhibits"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Building Blocks of Brahmanical Patriarchy (EPW Engage)",
+        "url": "https://www.epw.in/engage/article/building-blocks-brahmanical-patriarchy",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Infographics"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Digital Humanities & Visual Archives in South Asia",
+        "url": "https://youtu.be/RRXfIr5IoAM",
+        "desc": "",
+        "methods": [
+          "Videos/Infographics"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Hurricane Digital Memory Bank",
+        "url": "https://hurricanearchive.org/contributionphase",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "South Asian American Digital Archive (SAADA): Queer Histories",
+        "url": "https://www.saada.org/explore/exhibits/qbf/histories",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "region": "South Asia / Diaspora"
+      },
+      {
+        "title": "Reconstructing the Lost Acoustics of Notre-Dame",
+        "url": "https://www.nytimes.com/interactive/2023/03/03/magazine/notre-dame-cathedral-acoustics-sound.html?rsrc=flt&smid=url-share",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Spatial Audio"
+        ],
+        "region": "Europe"
+      },
+      {
+        "title": "PAST India: Project for Archaeological Science & Tech",
+        "url": "https://www.past-india.com/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "GIS"
+        ],
+        "region": "South Asia"
+      }
+    ]
+  },
+  {
+    "section": "Tutorials & Practical Guides",
+    "description": "",
+    "links": [
+      {
+        "title": "Make an Alluvial Diagram in RAWGraphs",
+        "url": "http://miriamposner.com/classes/dh101f16/tutorials-guides/data-visualization/make-an-alluvial-diagram/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Network Analysis with Gephi: Step-by-Step Guide",
+        "url": "http://miriamposner.com/classes/dh101f16/tutorials-guides/data-visualization/network-analysis/",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Essentials of Geographic Information Systems (Saylor Textbook)",
+        "url": "https://resources.saylor.org/wwwresources/archived/site/textbooks/Essentials%20of%20Geographic%20Information%20Systems.pdf",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "FlowingData: Data Visualization Practical Guides",
+        "url": "https://flowingdata.com/category/guides/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Introduction to GIS with R (Bookdown)",
+        "url": "https://bookdown.org/tep/gis/introduction-to-gis.html",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "A Gentle Introduction to GIS (QGIS Official Manual)",
+        "url": "https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Git Slab: Interactive Git Learning Lab",
+        "url": "https://shane-et-al.github.io/git_slab/",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Modern Interactive Charting: Tableau, Plotly & RAWGraphs",
+        "url": "https://www.rawgraphs.io/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Tutorial"
+        ],
+        "region": "Global"
+      }
+    ]
+  },
+  {
+    "section": "DH Tools & Software Platforms",
+    "description": "",
+    "links": [
+      {
+        "title": "Voyant Tools: Web-based Text Analysis",
+        "url": "https://voyant-tools.org/",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Orange: Visual Data Mining & Machine Learning",
+        "url": "https://orangedatamining.com/",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "QGIS: Free & Open Source Geographic Information System",
+        "url": "https://qgis.org/",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "ArcGIS Online & StoryMaps (Esri)",
+        "url": "https://www.arcgis.com/",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Gephi: Open Graph Visualization & Network Platform",
+        "url": "https://gephi.org/",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Palladio: Visualizing Historical Networks & Maps",
+        "url": "https://hdlab.stanford.edu/palladio/",
+        "desc": "",
+        "methods": [
+          "Network Analysis",
+          "GIS",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Omeka: Next-Gen Web Publishing for Archives & Exhibits",
+        "url": "https://omeka.org/",
+        "desc": "",
+        "methods": [
+          "Digital Exhibits",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Timeline JS: Storytelling with Rich Media Timelines",
+        "url": "https://timeline.knightlab.com/",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Leaflet & Maps JS: Interactive Web Mapping",
+        "url": "https://leafletjs.com/",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Google Earth & Google My Maps",
+        "url": "https://earth.google.com/",
+        "desc": "",
+        "methods": [
+          "GIS",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "GitHub & GitHub Pages: Version Control & Web Hosting",
+        "url": "https://pages.github.com/",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Tool"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Vercel: Fast Modern Web Deployment",
+        "url": "https://vercel.com/",
+        "desc": "",
+        "methods": [
+          "Other web projects",
+          "Tool"
+        ],
+        "region": "Global"
+      }
+    ]
+  },
+  {
+    "section": "Readings & Reference Collections",
+    "description": "",
+    "links": [
+      {
+        "title": "Tufts University: Learn Digital Humanities",
+        "url": "https://sites.tufts.edu/digitalhumanities/learn-dh/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Textual Analysis",
+          "GIS"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Andrew Abela's Chart Suggestions: A Thought-Starter",
+        "url": "https://extremepresentation.typepad.com/blog/2015/01/chart-suggestions-a-thought-starter.html",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Programming Historian: Text Mining YouTube Comments",
+        "url": "https://programminghistorian.org/en/lessons/text-mining-youtube-comments",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "NYU Libraries: South Asia Data and Maps Guide",
+        "url": "https://guides.nyu.edu/southasia/Data-and-Maps",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Programming Historian: Optical Character Recognition (OCR)",
+        "url": "https://programminghistorian.org/en/lessons/ocr-with-google-vision-and-tesseract",
+        "desc": "",
+        "methods": [
+          "Textual Analysis",
+          "Tutorial"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "India Geodata GeoJSON Repository (Yashveer)",
+        "url": "https://yashveeeeeeer.github.io/india-geodata/",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "The Digital Orientalist: South Asian Studies Digest",
+        "url": "https://digitalorientalist.com/2026/03/31/editors-digest-march-2026-south-asian-studies-part-1/",
+        "desc": "",
+        "methods": [
+          "Textual Analysis"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "Digital Orientalist: Mapping Ancient Indian Urban Spaces",
+        "url": "https://digitalorientalist.com/2019/12/04/mapping-ancient-indian-urban-spaces/",
+        "desc": "",
+        "methods": [
+          "GIS"
+        ],
+        "region": "South Asia"
+      },
+      {
+        "title": "A Companion to Digital Humanities (Blackwell)",
+        "url": "https://companions.digitalhumanities.org/DH/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Textual Analysis"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Harvard Digital Humanities Initiatives & Lab",
+        "url": "https://digitalhumanities.fas.harvard.edu/",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Digital Exhibits"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Evaluation Guidelines for Digital Humanities Projects",
+        "url": "https://sites.tufts.edu/digitalhumanities/evaluation-guidelines-for-dh-projects/",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "Awesome Interactive Journalism (GitHub)",
+        "url": "https://github.com/wbkd/awesome-interactive-journalism",
+        "desc": "",
+        "methods": [
+          "Data Viz",
+          "Web Storytelling"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "The New York Times: The Year in Graphics",
+        "url": "https://www.nytimes.com/interactive/2025/12/22/us/2025-year-in-graphics.html",
+        "desc": "",
+        "methods": [
+          "Data Viz"
+        ],
+        "region": "Global"
+      },
+      {
+        "title": "The Programming Historian: Complete Lesson Directory",
+        "url": "https://programminghistorian.org/en/lessons/",
+        "desc": "",
+        "methods": [
+          "Tutorial",
+          "Data Viz",
+          "GIS",
+          "Textual Analysis"
+        ],
+        "region": "Global"
+      }
+    ]
+  }
+]
+</script>
+
+<script>
+    const dataElement  = document.getElementById('app-data');
+    const projectContainer = document.getElementById('project-container');
+    const editorModal  = document.getElementById('editor-modal');
+    const guiEditor    = document.getElementById('gui-editor');
+    const searchInput  = document.getElementById('search-input');
+    const totalCountEl = document.getElementById('total-count');
+
+    let stateData = [];
+    let selectedSection = 'all';
+    let selectedMethod  = 'all';
+    let searchQuery     = '';
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+            .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+    }
+
+    function loadData() {
+        try { stateData = JSON.parse(dataElement.textContent); }
+        catch(e) { console.error(e); stateData = []; }
+    }
+
+    function countTotalItems() {
+        return stateData.reduce((a,s) => a + (s.links ? s.links.length : 0), 0);
+    }
+
+    // Section → CSS class mapping
+    function secClass(name) {
+        if (!name) return '';
+        if (name.includes('South Asia'))  return 'sec-southasia';
+        if (name.includes('Americas'))    return 'sec-global';
+        if (name.includes('Tutorial'))    return 'sec-tutorial';
+        if (name.includes('Tool'))        return 'sec-tools';
+        if (name.includes('Reading'))     return 'sec-readings';
+        return 'sec-global';
+    }
+    function secHeaderClass(name) {
+        if (!name) return '';
+        if (name.includes('South Asia'))  return 'sec-header-southasia';
+        if (name.includes('Americas'))    return 'sec-header-global';
+        if (name.includes('Tutorial'))    return 'sec-header-tutorial';
+        if (name.includes('Tool'))        return 'sec-header-tools';
+        if (name.includes('Reading'))     return 'sec-header-readings';
+        return 'sec-header-global';
+    }
+
+    // Method pill colours
+    function methodPill(m) {
+        const map = {
+            'GIS':                 'background:#d1fae5;color:#065f46;border-color:#6ee7b7',
+            'Data Viz':            'background:#e0e7ff;color:#312e81;border-color:#a5b4fc',
+            'Digital Exhibits':    'background:#ede9fe;color:#4c1d95;border-color:#c4b5fd',
+            'Textual Analysis':    'background:#fef3c7;color:#78350f;border-color:#fcd34d',
+            'Network Analysis':    'background:#dbeafe;color:#1e3a8a;border-color:#93c5fd',
+            'Videos/Infographics': 'background:#ffe4e6;color:#881337;border-color:#fda4af',
+            'Tool':                'background:#ccfbf1;color:#134e4a;border-color:#5eead4',
+            'Tutorial':            'background:#cffafe;color:#164e63;border-color:#67e8f9',
+            'Web Storytelling':    'background:#fce7f3;color:#831843;border-color:#f9a8d4',
+            'Oral History':        'background:#ffedd5;color:#7c2d12;border-color:#fdba74',
+        };
+        const style = map[m] || 'background:#f1f5f9;color:#334155;border-color:#cbd5e1';
+        return `<span class="pill" style="${style}">${escapeHtml(m)}</span>`;
+    }
+
+    function regionPill(r) {
+        if (!r) return '';
+        const isSA = r.includes('South Asia');
+        const style = isSA
+            ? 'background:#fef3c7;color:#78350f;border-color:#fcd34d;font-weight:700'
+            : 'background:#f1f5f9;color:#475569;border-color:#cbd5e1';
+        return `<span class="pill" style="${style}">${escapeHtml(r)}</span>`;
+    }
+
+    // ── Render index ──────────────────────────────────────────────
+    function renderIndex() {
+        projectContainer.innerHTML = '';
+        let total = 0;
+
+        stateData.forEach(sec => {
+            if (selectedSection !== 'all' && sec.section !== selectedSection) return;
+
+            const links = (sec.links || []).filter(item => {
+                const methods = Array.isArray(item.methods) ? item.methods : (item.methods ? [item.methods] : []);
+                const matchMethod = selectedMethod === 'all' ||
+                    methods.some(m => m.toLowerCase().includes(selectedMethod.toLowerCase()));
+
+                const q = searchQuery.trim().toLowerCase();
+                const matchSearch = !q ||
+                    (item.title && item.title.toLowerCase().includes(q)) ||
+                    (item.desc  && item.desc.toLowerCase().includes(q)) ||
+                    (item.url   && item.url.toLowerCase().includes(q)) ||
+                    (item.region && item.region.toLowerCase().includes(q)) ||
+                    methods.some(m => m.toLowerCase().includes(q));
+
+                return matchMethod && matchSearch;
+            });
+
+            if (!links.length) return;
+            total += links.length;
+
+            const sEl = document.createElement('section');
+            sEl.className = `bg-white/75 rounded-xl border border-stone-900/10 shadow-[2px_2px_0px_rgba(0,0,0,0.04)] overflow-hidden ${secClass(sec.section)}`;
+
+            // Section header
+            let html = `
+                <div class="px-6 pt-5 pb-4 border-b border-stone-900/08 flex items-baseline justify-between gap-4">
+                    <h2 class="text-xl md:text-2xl font-bold ${secHeaderClass(sec.section)}">${escapeHtml(sec.section)}</h2>
+                    <span class="text-xs mono-text text-stone-400 shrink-0">${links.length} ${links.length===1?'entry':'entries'}</span>
+                </div>
+                <div>
+            `;
+
+            links.forEach(item => {
+                const methods = Array.isArray(item.methods) ? item.methods : (item.methods ? [item.methods] : []);
+                const pills   = methods.map(methodPill).join(' ');
+                const rPill   = regionPill(item.region);
+                const safeUrl = escapeHtml(item.url || '');
+
+                html += `<div class="entry-card group/item">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="space-y-1 flex-grow min-w-0">
+                            ${safeUrl
+                                ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer"
+                                      class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
+                                      ${escapeHtml(item.title || 'Untitled')} <span class="text-stone-300 font-normal text-sm">&nearr;</span>
+                                  </a>`
+                                : `<span class="font-bold text-stone-900 text-base leading-snug">${escapeHtml(item.title||'Untitled')}</span>`
+                            }
+                            ${item.desc ? `<p class="text-sm text-stone-600 leading-relaxed font-sans">${escapeHtml(item.desc)}</p>` : ''}
+                            <div class="flex flex-wrap gap-1 pt-0.5">
+                                ${rPill} ${pills}
+                            </div>
+                        </div>
+                        ${safeUrl ? `
+                        <div class="flex shrink-0 gap-0.5 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                            <button onclick="copyURL('${safeUrl}',this)"
+                                class="p-1.5 text-stone-400 hover:text-amber-600 hover:bg-amber-50 rounded transition-all" title="Copy URL">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            </button>
+                            <a href="${safeUrl}" target="_blank" rel="noopener noreferrer"
+                               class="p-1.5 text-stone-400 hover:text-amber-600 hover:bg-amber-50 rounded transition-all" title="Open">
+                               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>` : ''}
+                    </div>
+                </div>`;
+            });
+
+            html += '</div>';
+            sEl.innerHTML = html;
+            projectContainer.appendChild(sEl);
+        });
+
+        totalCountEl.textContent = total;
+
+        if (!projectContainer.children.length) {
+            projectContainer.innerHTML = `
+                <div class="bg-white/70 rounded-xl p-10 text-center border border-stone-200">
+                    <p class="italic text-stone-700 text-base mb-1">No matching entries.</p>
+                    <p class="text-xs mono-text text-stone-400">Try clearing your search or filters.</p>
+                </div>`;
+        }
+    }
+
+    function copyURL(text, btn) {
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+            setTimeout(() => btn.innerHTML = orig, 1200);
+        }).catch(console.error);
+    }
+
+    // ── GUI Editor ────────────────────────────────────────────────
+    let dragSrcInfo = null;
+
+    function renderGUI() {
+        guiEditor.innerHTML = stateData.map((sec, sIdx) => `
+            <div class="section-item bg-stone-50 rounded-lg p-4 border border-stone-200" data-sidx="${sIdx}">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="cursor-grab text-stone-400 hover:text-amber-600 select-none p-1" draggable="true" title="Drag section">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+                    </span>
+                    <input type="text" value="${escapeHtml(sec.section)}" class="section-title font-bold text-sm bg-white border border-stone-300 rounded px-2 py-1 flex-grow focus:outline-none focus:border-amber-400 font-serif" placeholder="Section Title">
+                    <button onclick="moveSection(${sIdx},${sIdx-1})" ${sIdx===0?'disabled class="opacity-25 p-1"':'class="p-1 hover:text-amber-600 text-stone-400"'} title="↑">↑</button>
+                    <button onclick="moveSection(${sIdx},${sIdx+1})" ${sIdx===stateData.length-1?'disabled class="opacity-25 p-1"':'class="p-1 hover:text-amber-600 text-stone-400"'} title="↓">↓</button>
+                    <button onclick="removeSection(${sIdx})" class="text-red-400 hover:text-red-600 p-1 ml-1" title="Delete">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="links-container space-y-2.5 min-h-[40px] p-2 bg-white/60 rounded border border-dashed border-stone-200" data-sidx="${sIdx}">
+                    ${(sec.links||[]).map((link,lIdx) => {
+                        const methodsStr = Array.isArray(link.methods) ? link.methods.join(', ') : (link.methods||'');
+                        return `
+                        <div class="link-item bg-white p-3 rounded border border-stone-200 shadow-sm" draggable="true" data-sidx="${sIdx}" data-lidx="${lIdx}">
+                            <div class="flex items-start gap-2">
+                                <span class="cursor-grab text-stone-300 hover:text-stone-500 select-none pt-1" title="Drag">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+                                </span>
+                                <div class="flex-grow space-y-1.5">
+                                    <div class="flex gap-2">
+                                        <input type="text" value="${escapeHtml(link.title||'')}" class="link-title text-sm font-semibold bg-stone-50 border border-stone-300/60 rounded px-2 py-1 flex-grow focus:outline-none focus:border-amber-400" placeholder="Title">
+                                        <input type="text" value="${escapeHtml(link.region||'')}" class="link-region text-xs mono-text bg-stone-50 border border-stone-300/60 rounded px-2 py-1 w-32 focus:outline-none focus:border-amber-400" placeholder="Region">
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <input type="text" value="${escapeHtml(link.url||'')}" class="link-url text-xs mono-text text-indigo-900 bg-stone-50 border border-stone-300/60 rounded px-2 py-1 flex-grow focus:outline-none focus:border-amber-400" placeholder="https://…">
+                                        <input type="text" value="${escapeHtml(methodsStr)}" class="link-methods text-xs mono-text bg-stone-50 border border-stone-300/60 rounded px-2 py-1 w-44 focus:outline-none focus:border-amber-400" placeholder="GIS, Data Viz, …">
+                                    </div>
+                                    <textarea class="link-desc text-xs text-stone-600 bg-stone-50 border border-stone-300/60 rounded px-2 py-1 w-full focus:outline-none focus:border-amber-400" rows="2" placeholder="Description (optional)">${escapeHtml(link.desc||'')}</textarea>
+                                </div>
+                                <button onclick="removeLink(${sIdx},${lIdx})" class="text-red-400 hover:text-red-600 p-1 shrink-0">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>
+
+                <button onclick="addLink(${sIdx})" class="mt-2 text-xs mono-text font-bold text-amber-700 hover:text-amber-900 flex items-center gap-1">+ Add Entry</button>
+            </div>
+        `).join('');
+
+        bindDnd();
+    }
+
+    function bindDnd() {
+        guiEditor.querySelectorAll('.section-item').forEach(secEl => {
+            const handle = secEl.querySelector('.cursor-grab');
+            const sIdx = +secEl.dataset.sidx;
+            handle.addEventListener('dragstart', e => {
+                dragSrcInfo = {type:'section', sIdx};
+                e.dataTransfer.effectAllowed = 'move';
+                secEl.classList.add('opacity-40');
+            });
+            handle.addEventListener('dragend', () => { secEl.classList.remove('opacity-40'); dragSrcInfo=null; });
+            secEl.addEventListener('dragover', e => {
+                if (!dragSrcInfo || dragSrcInfo.type!=='section') return;
+                e.preventDefault(); secEl.classList.add('drag-over-section');
+            });
+            secEl.addEventListener('dragleave', () => secEl.classList.remove('drag-over-section'));
+            secEl.addEventListener('drop', e => {
+                if (!dragSrcInfo || dragSrcInfo.type!=='section') return;
+                e.preventDefault(); secEl.classList.remove('drag-over-section');
+                const from=dragSrcInfo.sIdx, to=sIdx;
+                if (from!==to) {
+                    saveFromGUI();
+                    const [s]=stateData.splice(from,1); stateData.splice(to,0,s);
+                    renderGUI(); applyAndRender();
+                }
+            });
+        });
+
+        guiEditor.querySelectorAll('.link-item').forEach(linkEl => {
+            const sIdx=+linkEl.dataset.sidx, lIdx=+linkEl.dataset.lidx;
+            linkEl.addEventListener('dragstart', e => {
+                e.stopPropagation();
+                dragSrcInfo={type:'link',sIdx,lIdx};
+                e.dataTransfer.effectAllowed='move';
+                linkEl.classList.add('opacity-40');
+            });
+            linkEl.addEventListener('dragend', () => { linkEl.classList.remove('opacity-40'); dragSrcInfo=null; });
+            linkEl.addEventListener('dragover', e => {
+                if (!dragSrcInfo||dragSrcInfo.type!=='link') return;
+                e.preventDefault(); e.stopPropagation();
+                linkEl.classList.add('drag-over-link');
+            });
+            linkEl.addEventListener('dragleave', () => linkEl.classList.remove('drag-over-link'));
+            linkEl.addEventListener('drop', e => {
+                if (!dragSrcInfo||dragSrcInfo.type!=='link') return;
+                e.preventDefault(); e.stopPropagation();
+                linkEl.classList.remove('drag-over-link');
+                saveFromGUI();
+                const [ml]=stateData[dragSrcInfo.sIdx].links.splice(dragSrcInfo.lIdx,1);
+                stateData[sIdx].links.splice(lIdx,0,ml);
+                renderGUI(); applyAndRender();
+            });
+        });
+    }
+
+    function saveFromGUI() {
+        const arr=[];
+        document.querySelectorAll('#gui-editor > .section-item').forEach(secDiv => {
+            const links=[];
+            secDiv.querySelectorAll('.link-item').forEach(lDiv => {
+                const methodsRaw = lDiv.querySelector('.link-methods')?.value||'';
+                links.push({
+                    title:   lDiv.querySelector('.link-title')?.value||'',
+                    region:  lDiv.querySelector('.link-region')?.value||'',
+                    url:     lDiv.querySelector('.link-url')?.value||'',
+                    methods: methodsRaw.split(',').map(m=>m.trim()).filter(Boolean),
+                    desc:    lDiv.querySelector('.link-desc')?.value||'',
+                });
+            });
+            arr.push({ section: secDiv.querySelector('.section-title')?.value||'', description:'', links });
+        });
+        stateData=arr;
+    }
+
+    function applyAndRender() {
+        saveFromGUI();
+        dataElement.textContent = '\n' + JSON.stringify(stateData,null,2) + '\n';
+        totalCountEl.textContent = countTotalItems();
+        renderIndex();
+    }
+
+    window.removeSection = sIdx => { saveFromGUI(); stateData.splice(sIdx,1); renderGUI(); applyAndRender(); };
+    window.addSection    = ()    => { saveFromGUI(); stateData.push({section:'New Section',description:'',links:[]}); renderGUI(); applyAndRender(); };
+    window.removeLink    = (s,l) => { saveFromGUI(); stateData[s].links.splice(l,1); renderGUI(); applyAndRender(); };
+    window.addLink       = s     => { saveFromGUI(); stateData[s].links.push({title:'',url:'',desc:'',methods:[],region:''}); renderGUI(); applyAndRender(); };
+    window.moveSection   = (from,to) => {
+        if (to<0||to>=stateData.length) return;
+        saveFromGUI();
+        const [s]=stateData.splice(from,1); stateData.splice(to,0,s);
+        renderGUI(); applyAndRender();
+    };
+
+    // ── Wiring ────────────────────────────────────────────────────
+    searchInput.addEventListener('input', e => { searchQuery=e.target.value; renderIndex(); });
+
+    document.querySelectorAll('.sec-filter-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            document.querySelectorAll('.sec-filter-btn').forEach(b => {
+                b.classList.remove('active','bg-stone-800','text-white');
+                b.classList.add('bg-white','text-stone-700');
+            });
+            e.currentTarget.classList.add('active','bg-stone-800','text-white');
+            e.currentTarget.classList.remove('bg-white','text-stone-700');
+            selectedSection = e.currentTarget.dataset.sec;
+            renderIndex();
+        });
+    });
+
+    document.querySelectorAll('.method-filter-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            document.querySelectorAll('.method-filter-btn').forEach(b => {
+                b.classList.remove('active','bg-stone-800','text-white');
+                b.classList.add('bg-white','text-stone-600');
+            });
+            e.currentTarget.classList.add('active','bg-stone-800','text-white');
+            e.currentTarget.classList.remove('bg-white','text-stone-600');
+            selectedMethod = e.currentTarget.dataset.method;
+            renderIndex();
+        });
+    });
+
+    // Secret keyword 'editnow' (silent) + visible tiny ✎ button in footer
+    let keystrokes='';
+    document.addEventListener('keydown', e => {
+        if (['input','textarea'].includes(e.target.tagName.toLowerCase())) return;
+        keystrokes += e.key;
+        if (keystrokes.length>7) keystrokes=keystrokes.slice(-7);
+        if (keystrokes.toLowerCase()==='editnow') { renderGUI(); editorModal.showModal(); keystrokes=''; }
+    });
+    document.getElementById('open-editor-btn').addEventListener('click', () => { renderGUI(); editorModal.showModal(); });
+    document.getElementById('btn-close').addEventListener('click', () => editorModal.close());
+    guiEditor.addEventListener('input', () => applyAndRender());
+
+    document.getElementById('btn-download').addEventListener('click', () => {
+        saveFromGUI();
+        dataElement.textContent='\n'+JSON.stringify(stateData,null,2)+'\n';
+        editorModal.close();
+        setTimeout(() => {
+            const blob = new Blob(['<!DOCTYPE html>\n'+document.documentElement.outerHTML], {type:'text/html'});
+            const url  = URL.createObjectURL(blob);
+            const a    = Object.assign(document.createElement('a'), {href:url, download:'dh-project-index.html'});
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a); URL.revokeObjectURL(url);
+        },100);
+    });
+
+    // ── Init ──────────────────────────────────────────────────────
+    loadData();
+    totalCountEl.textContent = countTotalItems();
+    renderIndex();
+</script>
+</body>
+</html>
