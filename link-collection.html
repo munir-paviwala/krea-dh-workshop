@@ -96,14 +96,21 @@
 
         /* Method/region pill */
         .pill {
-            display: inline-block;
-            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
             font-family: 'Fira Code', monospace;
-            font-weight: 600;
-            padding: 1px 7px;
+            font-weight: 500;
+            padding: 2px 9px;
             border-radius: 9999px;
             border: 1px solid;
-            line-height: 1.6;
+            line-height: 1.4;
+            letter-spacing: 0.01em;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: all 0.15s ease;
+        }
+        .pill:hover {
+            transform: translateY(-1px);
         }
 
         .drag-over-section { border-color: #9333ea !important; background-color: rgba(243,232,255,0.5) !important; }
@@ -113,12 +120,13 @@
             body { background: white !important; }
             .noise-overlay, .no-print { display: none !important; }
         }
+
     </style>
 </head>
 <body class="relative pb-20">
 <div class="noise-overlay"></div>
 
-<main class="max-w-4xl mx-auto py-12 px-4 md:px-6 relative z-10">
+<main class="max-w-4xl mx-auto pt-16 pb-12 px-4 md:px-6 relative z-10">
 
     <!-- ── Header ── -->
     <header class="mb-10 text-center">
@@ -127,7 +135,7 @@
             <span class="opacity-30">|</span>
             <span>Krea University</span>
             <span class="opacity-30">|</span>
-            <span>4–6 Sep 2026</span>
+            <span>5–7 Sep 2026</span>
             <span class="opacity-30">|</span>
             <span>Munir Paviwala</span>
         </div>
@@ -136,6 +144,22 @@
         <p class="text-xs mono-text text-stone-600">
             Bookmark: <code class="bg-white/60 px-1.5 py-0.5 rounded border border-stone-300">Cmd/Ctrl + D</code>
         </p>
+
+        <!-- In-Flow Workshop Navigation Tabs -->
+        <div class="mt-6 flex justify-center">
+            <nav class="inline-flex items-center p-1.5 rounded-full bg-stone-900/5 border border-stone-900/10 shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] gap-1 text-xs sm:text-sm font-sans" aria-label="Workshop Navigation">
+                <a href="index.html" class="flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full font-semibold text-stone-700 hover:text-stone-950 hover:bg-white/80 transition-all">
+                    <span>Day 1</span>
+                </a>
+                <a href="day2.html" class="flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full font-semibold text-stone-700 hover:text-stone-950 hover:bg-white/80 transition-all">
+                    <span>Day 2</span>
+                </a>
+                <a href="link-collection.html" class="flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full font-bold bg-purple-700 text-white shadow-md shadow-purple-700/25 ring-2 ring-purple-500/30 transition-all">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Link Collection</span>
+                </a>
+            </nav>
+        </div>
     </header>
 
     <!-- ── Filter Bar ── -->
@@ -1133,21 +1157,21 @@
         return 'sec-header-global';
     }
 
-    // Method pill colours
+    // Method pill colours (Soft, delicate pastels)
     function methodPill(m) {
         const map = {
-            'GIS':                 'background:#d1fae5;color:#065f46;border-color:#6ee7b7',
-            'Data Viz':            'background:#e0e7ff;color:#312e81;border-color:#a5b4fc',
-            'Digital Exhibits':    'background:#ede9fe;color:#4c1d95;border-color:#c4b5fd',
-            'Textual Analysis':    'background:#fef3c7;color:#78350f;border-color:#fcd34d',
-            'Network Analysis':    'background:#dbeafe;color:#1e3a8a;border-color:#93c5fd',
-            'Videos/Infographics': 'background:#ffe4e6;color:#881337;border-color:#fda4af',
-            'Tool':                'background:#ccfbf1;color:#134e4a;border-color:#5eead4',
-            'Tutorial':            'background:#cffafe;color:#164e63;border-color:#67e8f9',
-            'Web Storytelling':    'background:#fce7f3;color:#831843;border-color:#f9a8d4',
-            'Oral History':        'background:#ffedd5;color:#7c2d12;border-color:#fdba74',
+            'GIS':                 'background:#ecfdf5;color:#047857;border-color:#a7f3d0',
+            'Data Viz':            'background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe',
+            'Digital Exhibits':    'background:#faf5ff;color:#6b21a8;border-color:#e9d5ff',
+            'Textual Analysis':    'background:#fffbeb;color:#b45309;border-color:#fde68a',
+            'Network Analysis':    'background:#f0f9ff;color:#0369a1;border-color:#bae6fd',
+            'Videos/Infographics': 'background:#fff1f2;color:#be123c;border-color:#fecdd3',
+            'Tool':                'background:#f0fdf4;color:#166534;border-color:#bbf7d0',
+            'Tutorial':            'background:#ecfeff;color:#0e7490;border-color:#a5f3fc',
+            'Web Storytelling':    'background:#fdf2f8;color:#9d174d;border-color:#fbcfe8',
+            'Oral History':        'background:#fff7ed;color:#c2410c;border-color:#ffedd5',
         };
-        const style = map[m] || 'background:#f1f5f9;color:#334155;border-color:#cbd5e1';
+        const style = map[m] || 'background:#f8fafc;color:#64748b;border-color:#e2e8f0';
         return `<span class="pill" style="${style}">${escapeHtml(m)}</span>`;
     }
 
@@ -1155,8 +1179,8 @@
         if (!r) return '';
         const isSA = r.includes('South Asia');
         const style = isSA
-            ? 'background:#fef3c7;color:#78350f;border-color:#fcd34d;font-weight:700'
-            : 'background:#f1f5f9;color:#475569;border-color:#cbd5e1';
+            ? 'background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600'
+            : 'background:#f8fafc;color:#64748b;border-color:#e2e8f0';
         return `<span class="pill" style="${style}">${escapeHtml(r)}</span>`;
     }
 
@@ -1462,5 +1486,6 @@
     totalCountEl.textContent = countTotalItems();
     renderIndex();
 </script>
+
 </body>
 </html>
