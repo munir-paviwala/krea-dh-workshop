@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#F3E8FF">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DH Workshop Day 1 | Krea University">
+  <meta property="og:description" content="Presentation resources for Day 1 of the Digital Humanities workshop at Krea University, 5–7 September 2026, by Munir Paviwala.">
+  <meta name="description" content="Presentation resources for Day 1 of the Digital Humanities workshop at Krea University, 5–7 September 2026, by Munir Paviwala.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DH Workshop Day 1 | Krea University">
+  <meta name="twitter:description" content="Presentation resources for Day 1 of the Digital Humanities workshop at Krea University, 5–7 September 2026, by Munir Paviwala.">
     <title>Krea DH Workshop | Munir Paviwala</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -5822,10 +5829,54 @@
                 line-height: 1.75rem
             }
         }
-    </style>
+        /* Rainbow link */
+    .rainbow-link {
+      background: linear-gradient(90deg, #f43f5e, #f97316, #eab308, #22c55e, #3b82f6, #a855f7, #f43f5e);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbow-shift 4s linear infinite;
+      text-decoration: none;
+      font-weight: inherit;
+    }
+    @keyframes rainbow-shift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+</style>
 </head>
 
 <body class="relative">
+    <!-- ── Welcome Popup ── -->
+    <dialog id="welcome-modal"
+      style="border:none;border-radius:1rem;padding:0;max-width:480px;width:calc(100% - 2rem);box-shadow:0 20px 60px rgba(0,0,0,0.18);">
+      <div style="background:linear-gradient(135deg,#fef9c3 0%,#ccfbf1 100%);border-radius:1rem;padding:2rem 2rem 1.5rem;">
+        <h2 style="font-size:1.1rem;font-weight:800;color:#1c1917;margin:0 0 0.75rem;letter-spacing:-0.01em;">Welcome</h2>
+        <p style="font-size:0.875rem;color:#44403c;line-height:1.6;margin:0 0 0.75rem;">
+          This is a companion site to a Digital Humanities workshop I ran at Krea University (5–7 September 2026) — a place to collect and share the best DH projects I found while putting it together.
+        </p>
+        <p style="font-size:0.875rem;color:#44403c;line-height:1.6;margin:0 0 1.25rem;">
+          The <strong>South Asia section</strong> in the Link Collection is something I’ve curated carefully; it’s hard to find a collection this comprehensive anywhere else.
+        </p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
+          <a href="link-collection.html"
+            style="display:inline-block;background:#1c1917;color:#fff;font-size:0.8rem;font-weight:700;padding:0.55rem 1.1rem;border-radius:999px;text-decoration:none;letter-spacing:0.01em;">
+            Browse Link Collection →
+          </a>
+          <button onclick="document.getElementById('welcome-modal').close()"
+            style="background:transparent;border:none;font-size:0.8rem;color:#78716c;cursor:pointer;padding:0.55rem 0.5rem;font-family:inherit;">
+            Dismiss
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('welcome-modal').showModal();
+      });
+    </script>
+
     <div class="noise-overlay"></div>
 
     <main class="max-w-2xl mx-auto py-16 px-6 relative z-10 flex flex-col min-h-screen">
@@ -5838,13 +5889,14 @@
                 <span class="opacity-40">|</span>
                 <span>5–7 Sep 2026</span>
                 <span class="opacity-40">|</span>
-                <span>Munir Paviwala</span>
+                <a href="https://munirpaviwala.com" target="_blank" rel="noopener noreferrer" class="rainbow-link">Munir Paviwala</a>
             </div>
 
             <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight">Presentation Resources</h1>
             <p class="text-xs font-sans text-slate-700 font-medium">Bookmark this page (<code
                     class="bg-white/60 px-1.5 py-0.5 rounded border border-slate-300/60">Cmd/Ctrl + D</code>) to access
                 these resources during or after the session.</p>
+            <p class="text-xs font-sans text-slate-500 mt-1">Section titles here match the slide titles from the workshop. If a section is called “Visualising Data”, it contains links from that slide.</p>
 
             <!-- In-Flow Workshop Navigation Tabs -->
             <div class="mt-6 flex justify-center">

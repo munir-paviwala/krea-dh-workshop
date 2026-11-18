@@ -9,30 +9,13 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap');
 
-    @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
     body {
       font-family: 'Fraunces', serif;
       font-weight: 400;
       background:
-        radial-gradient(circle at 10% 90%, rgba(20, 184, 166, 0.42), transparent 48%),
-        radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.52), transparent 48%),
-        radial-gradient(circle at 55% 55%, rgba(253, 186, 116, 0.35), transparent 50%),
-        linear-gradient(145deg, #fef9c3, #ccfbf1, #fde68a, #a7f3d0, #fed7aa);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 400% 400%;
-      animation: gradientBG 70s ease infinite;
+        radial-gradient(ellipse at 70% 40%, rgba(252, 231, 238, 0.6) 0%, transparent 60%),
+        linear-gradient(180deg, #cae7d6 0%, #d4ede0 50%, #dff2e8 100%);
+      background-repeat: no-repeat;
       color: #1a1a1a;
       min-height: 100vh;
     }
@@ -82,6 +65,28 @@
     .academic-link:hover::after {
       transform: scaleX(1);
       transform-origin: bottom left;
+    }
+
+    /* Rainbow link */
+    .rainbow-link {
+      background: linear-gradient(90deg, #f43f5e, #f97316, #eab308, #22c55e, #3b82f6, #a855f7, #f43f5e);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbow-shift 4s linear infinite;
+      text-decoration: none;
+      font-weight: inherit;
+    }
+
+    @keyframes rainbow-shift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 300% 50%;
+      }
     }
 
     dialog::backdrop {
@@ -136,15 +141,37 @@
       color: #6d28d9;
     }
 
+    /* Entry cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     /* Individual entry card */
     .entry-card {
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-      padding: 1rem 1.25rem;
+      padding: 1.1rem 1.4rem;
       transition: background 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .entry-card:last-child {
-      border-bottom: none;
+    @media (min-width: 768px) {
+      .entry-card {
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      /* Remove right border on even cards (right column) */
+      .entry-card:nth-child(2n) {
+        border-right: none;
+      }
     }
 
     .entry-card:hover {
@@ -1442,7 +1469,7 @@
 <body class="relative pb-20">
   <div class="noise-overlay"></div>
 
-  <main class="max-w-4xl mx-auto pt-16 pb-12 px-4 md:px-6 relative z-10">
+  <main class="max-w-5xl mx-auto pt-16 pb-12 px-4 md:px-6 relative z-10">
 
     <!-- ── Header ── -->
     <header class="mb-10 text-center">
@@ -1454,11 +1481,15 @@
         <span class="opacity-30">|</span>
         <span>5–7 Sep 2026</span>
         <span class="opacity-30">|</span>
-        <span>Munir Paviwala</span>
+        <a href="https://munirpaviwala.com" target="_blank" rel="noopener noreferrer" class="rainbow-link">Munir
+          Paviwala</a>
       </div>
       <h1 class="text-3xl md:text-5xl font-bold text-stone-900 mb-3 tracking-tight">Digital Humanities Project Index
       </h1>
       <p class="text-stone-700 italic text-base mb-3">Projects, tools, tutorials, and resources from the workshop.</p>
+      <p class="text-xs mono-text text-stone-500 mb-1">Use the <strong>Collection</strong> and <strong>Method</strong>
+        buttons to filter, or the search bar to find something specific. Filters combine — so you can browse South Asia
+        + GIS projects at once.</p>
       <p class="text-xs mono-text text-stone-600">
         Bookmark: <code class="bg-white/60 px-1.5 py-0.5 rounded border border-stone-300">Cmd/Ctrl + D</code>
       </p>
@@ -1488,6 +1519,57 @@
         </nav>
       </div>
     </header>
+
+
+    <!-- ── Featured Projects ── -->
+    <section class="no-print mb-8">
+      <h2 class="text-xs mono-text font-bold uppercase tracking-widest text-stone-500 mb-3">★ Highlighted Projects</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        <a href="https://103orchard.tenement.org/stories/103-orchard/" target="_blank" rel="noopener noreferrer"
+          class="group block bg-white/80 rounded-xl border border-stone-200 p-4 hover:border-amber-400 hover:shadow-md transition-all no-underline">
+          <div class="font-bold text-stone-900 text-sm leading-snug mb-1 group-hover:text-amber-800">103 Orchard:
+            Tenement Museum Stories <span class="font-normal text-stone-300 text-xs">↗</span></div>
+          <p class="text-xs text-stone-500 leading-relaxed font-sans">Shows the flexibility and possibilities of what a
+            website can do to communicate a narrative.</p>
+        </a>
+
+        <a href="https://ourworldindata.org/worlds-energy-problem" target="_blank" rel="noopener noreferrer"
+          class="group block bg-white/80 rounded-xl border border-stone-200 p-4 hover:border-amber-400 hover:shadow-md transition-all no-underline">
+          <div class="font-bold text-stone-900 text-sm leading-snug mb-1 group-hover:text-amber-800">Our World in Data:
+            The World's Energy Problem <span class="font-normal text-stone-300 text-xs">↗</span></div>
+          <p class="text-xs text-stone-500 leading-relaxed font-sans">Shows that: Simple yet effective interactive data
+            with context can carry the arguments.</p>
+        </a>
+
+        <a href="https://www.tasveergharindia.net/" target="_blank" rel="noopener noreferrer"
+          class="group block bg-white/80 rounded-xl border border-stone-200 p-4 hover:border-amber-400 hover:shadow-md transition-all no-underline">
+          <div class="font-bold text-stone-900 text-sm leading-snug mb-1 group-hover:text-amber-800">Tasveer Ghar: A
+            House of Indian Popular Visual Culture <span class="font-normal text-stone-300 text-xs">↗</span></div>
+          <p class="text-xs text-stone-500 leading-relaxed font-sans">What amazing collections can allow for exploring.
+            Check the essay section for seeing how an archive and analysis can co-exist on a webpage.</p>
+        </a>
+
+        <a href="https://www.epw.in/engage/article/building-blocks-brahmanical-patriarchy" target="_blank"
+          rel="noopener noreferrer"
+          class="group block bg-white/80 rounded-xl border border-stone-200 p-4 hover:border-amber-400 hover:shadow-md transition-all no-underline">
+          <div class="font-bold text-stone-900 text-sm leading-snug mb-1 group-hover:text-amber-800">Building Blocks of
+            Brahmanical Patriarchy (EPW Engage) <span class="font-normal text-stone-300 text-xs">↗</span></div>
+          <p class="text-xs text-stone-500 leading-relaxed font-sans">Sometimes the project doesn't have to do much but
+            just share an interactive picture to capture the multi-faceted argument.</p>
+        </a>
+
+        <a href="https://timeline.knightlab.com/" target="_blank" rel="noopener noreferrer"
+          class="group block bg-white/80 rounded-xl border border-stone-200 p-4 hover:border-amber-400 hover:shadow-md transition-all no-underline">
+          <div class="font-bold text-stone-900 text-sm leading-snug mb-1 group-hover:text-amber-800">Timeline JS <span
+              class="font-normal text-stone-300 text-xs">↗</span></div>
+          <p class="text-xs text-stone-500 leading-relaxed font-sans">My recommendation for an easy, accessible tool for
+            Digital History projects — works well as a student assignment too. Not all DH has to use fancy tech be
+            effectiveto.</p>
+        </a>
+
+      </div>
+    </section>
 
     <!-- ── Filter Bar ── -->
     <section
@@ -1567,17 +1649,17 @@
           <h2 class="text-xl md:text-2xl font-bold sec-header-global">DH Projects: Americas &amp; Global</h2>
           <span class="text-xs mono-text text-stone-400 shrink-0">10 entries</span>
         </div>
-        <div>
+        <div class="cards-grid">
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://resources.amdigital.co.uk/eic/map/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   British East India Company Trade Data &amp; Voyages Map <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">Data Viz</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
@@ -1607,14 +1689,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://www.slavevoyages.org/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Slave Voyages: The Trans-Atlantic Slave Trade Database <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global /
                     Americas</span> <span class="pill"
                     style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">Data Viz</span> <span class="pill"
@@ -1645,13 +1727,13 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://photogrammar.org/intro" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Photogrammar <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Americas</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#faf5ff;color:#6b21a8;border-color:#e9d5ff">Digital Exhibits</span>
@@ -1682,14 +1764,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://cblevins.github.io/us-post-offices/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Geography of the Post: US Post Offices in the 19th Century <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Americas</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
                 </div>
@@ -1718,14 +1800,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://www.nytimes.com/2026/08/05/world/europe/russia-ukraine-air-war.html?rsrc=flt&amp;smid=url-share"
                   target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Mapping the Air War in Ukraine <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Europe /
                     Global</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span class="pill"
@@ -1758,14 +1840,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://experience.arcgis.com/experience/f65e27165c224f46ab390dc0154d3eb9/" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   ArcGIS Spatial Storytelling Dashboard <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
                 </div>
@@ -1796,14 +1878,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://storymaps.arcgis.com/stories/1cb2707246a54683bfa6e6bf1917c881" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Environmental History: ArcGIS StoryMap <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#fdf2f8;color:#9d174d;border-color:#fbcfe8">Web Storytelling</span>
@@ -1834,7 +1916,7 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://sites.google.com/bc.edu/thedonkeydriversmap/home" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -1842,7 +1924,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Middle East /
                     Global</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span class="pill"
@@ -1874,13 +1956,13 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://fwwcpdigitalcollection.org/map.html" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   FWWCP Publishing Groups Interactive Map <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Europe</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
                 </div>
@@ -1909,7 +1991,7 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://engineeringhistoricalmemory.com/FraMauro.php?hid=208&amp;cid=" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -1917,7 +1999,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Europe /
                     Global</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span class="pill"
@@ -1955,17 +2037,17 @@
           <h2 class="text-xl md:text-2xl font-bold sec-header-southasia">South Asia Exemplars &amp; Case Studies</h2>
           <span class="text-xs mono-text text-stone-400 shrink-0">3 entries</span>
         </div>
-        <div>
+        <div class="cards-grid">
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://chapakhana.uchicago.edu/about" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Chapakhana: Mapping the Spread of Print in South Asia <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span class="pill"
@@ -1997,7 +2079,7 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://scalar.lehigh.edu/kiplings/map-of-relevant-place-names-in-19th-century-colonial-india"
                   target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -2005,7 +2087,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span class="pill"
@@ -2038,13 +2120,13 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://www.past-india.com/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   PAST India: Collection of Digital Images <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill" style="background:#faf5ff;color:#6b21a8;border-color:#e9d5ff">Digital
                     Exhibits</span> <span class="pill"
@@ -2081,10 +2163,10 @@
           <h2 class="text-xl md:text-2xl font-bold sec-header-tutorial">Tutorials &amp; Practical Guides</h2>
           <span class="text-xs mono-text text-stone-400 shrink-0">3 entries</span>
         </div>
-        <div>
+        <div class="cards-grid">
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://resources.saylor.org/wwwresources/archived/site/textbooks/Essentials%20of%20Geographic%20Information%20Systems.pdf"
                   target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -2092,7 +2174,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc">Tutorial</span>
@@ -2124,14 +2206,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://bookdown.org/tep/gis/introduction-to-gis.html" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Introduction to GIS with R (Bookdown) <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc">Tutorial</span>
@@ -2162,7 +2244,7 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/index.html" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -2170,7 +2252,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc">Tutorial</span>
@@ -2207,10 +2289,10 @@
           <h2 class="text-xl md:text-2xl font-bold sec-header-tools">DH Tools &amp; Software Platforms</h2>
           <span class="text-xs mono-text text-stone-400 shrink-0">5 entries</span>
         </div>
-        <div>
+        <div class="cards-grid">
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://qgis.org/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   QGIS: Free &amp; Open Source Geographic Information System <span
@@ -2218,7 +2300,7 @@
                 </a>
                 <p class="text-sm text-stone-600 leading-relaxed font-sans">It is almost as good as ArcGIS, except a few
                   features. But definitely recommend using R with GIS if you need more functionality.</p>
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0">Tool</span>
@@ -2248,14 +2330,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://www.arcgis.com/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   ArcGIS Online &amp; StoryMaps (Esri) <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
                 <p class="text-sm text-stone-600 leading-relaxed font-sans">The most-sought after industry standard. but
                   heavy paywall.</p>
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0">Tool</span>
@@ -2285,14 +2367,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://hdlab.stanford.edu/palladio/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Palladio: Visualizing Historical Networks &amp; Maps <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#f0f9ff;color:#0369a1;border-color:#bae6fd">Network Analysis</span>
                   <span class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
@@ -2323,14 +2405,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Leaflet &amp; Maps JS: Interactive Web Mapping <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0">Tool</span>
@@ -2360,13 +2442,13 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://earth.google.com/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Google Earth &amp; Google My Maps <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span> <span
                     class="pill" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0">Tool</span>
@@ -2402,16 +2484,16 @@
           <h2 class="text-xl md:text-2xl font-bold sec-header-readings">Readings &amp; Reference Collections</h2>
           <span class="text-xs mono-text text-stone-400 shrink-0">5 entries</span>
         </div>
-        <div>
+        <div class="cards-grid">
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://sites.tufts.edu/digitalhumanities/learn-dh/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   Tufts University: Learn Digital Humanities <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">Data Viz</span> <span
                     class="pill" style="background:#fffbeb;color:#b45309;border-color:#fde68a">Textual Analysis</span>
@@ -2442,14 +2524,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://guides.nyu.edu/southasia/Data-and-Maps" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   NYU Libraries: South Asia Data and Maps Guide <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
@@ -2479,13 +2561,13 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://yashveeeeeeer.github.io/india-geodata/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   India Geodata GeoJSON Repository (Yashveer) <span class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
@@ -2515,7 +2597,7 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://digitalorientalist.com/2019/12/04/mapping-ancient-indian-urban-spaces/" target="_blank"
                   rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -2523,7 +2605,7 @@
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#fffbe6;color:#854d0e;border-color:#fef08a;font-weight:600">South
                     Asia</span> <span class="pill"
                     style="background:#ecfdf5;color:#047857;border-color:#a7f3d0">GIS</span>
@@ -2555,14 +2637,14 @@
           </div>
           <div class="entry-card group/item">
             <div class="flex items-start justify-between gap-3">
-              <div class="space-y-1 flex-grow min-w-0">
+              <div class="space-y-1.5 flex-grow min-w-0">
                 <a href="https://programminghistorian.org/en/lessons/" target="_blank" rel="noopener noreferrer"
                   class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
                   The Programming Historian: Complete Lesson Directory <span
                     class="text-stone-300 font-normal text-sm">↗</span>
                 </a>
 
-                <div class="flex flex-wrap gap-1 pt-0.5">
+                <div class="flex flex-wrap gap-1.5 pt-1">
                   <span class="pill" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0">Global</span> <span
                     class="pill" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc">Tutorial</span> <span
                     class="pill" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">Data Viz</span> <span
@@ -6260,12 +6342,31 @@
         ],
         "desc": ""
       },
-      {
+            {
         "title": "The First Ladies Digital Gallery: Smithsonian NMAH",
         "region": "Americas",
         "url": "https://firstladies.si.edu/gallery",
         "methods": [
           "Digital Exhibits"
+        ],
+        "desc": ""
+      },
+      {
+        "title": "Hurricane Digital Memory Bank",
+        "region": "Global",
+        "url": "https://hurricanearchive.org/contributionphase",
+        "methods": [
+          "Digital Exhibits"
+        ],
+        "desc": ""
+      },
+      {
+        "title": "NY Times interactive: Notre Dame Cathedral interactive",
+        "region": "Europe",
+        "url": "https://www.nytimes.com/interactive/2023/03/03/magazine/notre-dame-cathedral-acoustics-sound.html?rsrc=flt&smid=url-share",
+        "methods": [
+          "Other web projects",
+          "Spatial Audio"
         ],
         "desc": ""
       }
@@ -6395,30 +6496,11 @@
         "desc": ""
       },
       {
-        "title": "Hurricane Digital Memory Bank",
-        "region": "Global",
-        "url": "https://hurricanearchive.org/contributionphase",
-        "methods": [
-          "Digital Exhibits"
-        ],
-        "desc": ""
-      },
-      {
         "title": "South Asian American Digital Archive (SAADA): Queer Histories",
         "region": "South Asia / Diaspora",
         "url": "https://www.saada.org/explore/exhibits/qbf/histories",
         "methods": [
           "Digital Exhibits"
-        ],
-        "desc": ""
-      },
-      {
-        "title": "NY Times interactive: Notre Dame Cathedral interactive",
-        "region": "Europe",
-        "url": "https://www.nytimes.com/interactive/2023/03/03/magazine/notre-dame-cathedral-acoustics-sound.html?rsrc=flt&smid=url-share",
-        "methods": [
-          "Other web projects",
-          "Spatial Audio"
         ],
         "desc": ""
       },
@@ -6904,7 +6986,7 @@
                     <h2 class="text-xl md:text-2xl font-bold ${secHeaderClass(sec.section)}">${escapeHtml(sec.section)}</h2>
                     <span class="text-xs mono-text text-stone-400 shrink-0">${links.length} ${links.length === 1 ? 'entry' : 'entries'}</span>
                 </div>
-                <div>
+                <div class="cards-grid">
             `;
 
         links.forEach(item => {
@@ -6915,7 +6997,7 @@
 
           html += `<div class="entry-card group/item">
                     <div class="flex items-start justify-between gap-3">
-                        <div class="space-y-1 flex-grow min-w-0">
+                        <div class="space-y-1.5 flex-grow min-w-0">
                             ${safeUrl
               ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer"
                                       class="academic-link font-bold text-stone-900 hover:text-amber-800 text-base leading-snug inline-block">
@@ -6924,7 +7006,7 @@
               : `<span class="font-bold text-stone-900 text-base leading-snug">${escapeHtml(item.title || 'Untitled')}</span>`
             }
                             ${item.desc ? `<p class="text-sm text-stone-600 leading-relaxed font-sans">${escapeHtml(item.desc)}</p>` : ''}
-                            <div class="flex flex-wrap gap-1 pt-0.5">
+                            <div class="flex flex-wrap gap-1.5 pt-1">
                                 ${rPill} ${pills}
                             </div>
                         </div>
